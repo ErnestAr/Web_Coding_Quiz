@@ -1,6 +1,7 @@
 * {
     border: 3px solid darkgreen;
     border-radius: 3px ;
+    
 }
 
 header {
@@ -14,8 +15,8 @@ header {
 }
 #timerh3 {
     height: fit-content;
-    font-size: 40px;
-    flex: 75%;
+    font-size: 35px;
+    flex: 60%;
 }
 
 .container {
@@ -26,6 +27,7 @@ header {
 
 #question  { 
     flex: 30%;
+    font-size: 35px;
 
     
 }
@@ -49,4 +51,24 @@ header {
 
 li {
     margin: 10px 0px;
+    font-size: 25px;
+}
+
+#lastscore {
+    font-size: 35px;
+    opacity: 0.65;
+}
+
+#startquiz {
+    font-size: 35px;
+    opacity: 0.65;
+    font-weight:400
+}
+
+#lastscore:hover {
+    opacity: 1.0;
+}
+
+#startquiz:hover {
+    opacity: 1.0;
 }

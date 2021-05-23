@@ -37,7 +37,7 @@ var answersQ5 = [
   "Concrete Terms",
   " Favorites",
 ];
-
+var nq;
 //Active time and first question
 function init() {
   startButton.addEventListener("click", function () {
@@ -78,8 +78,8 @@ function startQ1() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[2];
   rightAnswer.dataset.answer = "right";
-  var nq = startQ2;
-  checkAnswer(nq);
+   nq = startQ2;
+  
   //check if answer is right or wrong
   return;
 }
@@ -97,8 +97,8 @@ function startQ2() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[3];
   rightAnswer.dataset.answer = "right";
-  var nq = startQ3;
-  checkAnswer(nq);
+   nq = startQ3;
+  
   //check if answer is right or wrong
   return;
 }
@@ -118,8 +118,8 @@ function startQ3() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[0];
   rightAnswer.dataset.answer = "right";
-  var nq = startQ4;
-  checkAnswer(nq);
+   nq = startQ4;
+  
   //check if answer is right or wrong
   return;
 }
@@ -137,8 +137,8 @@ function startQ4() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[0];
   rightAnswer.dataset.answer = "right";
-  var nq = startQ5;
-  checkAnswer(nq);
+   nq = startQ5;
+  
   //check if answer is right or wrong
   return;
 }
@@ -156,8 +156,8 @@ function startQ5() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[0];
   rightAnswer.dataset.answer = "right";
-  var nq = formMenu;
-  checkAnswer(nq);
+  nq = formMenu;
+
   //check if answer is right or wrong
 }
 
@@ -173,8 +173,10 @@ function formMenu() {
   timerH3.className = "hideitem";
 }
 
-function checkAnswer(nq) {
-    answerList.addEventListener("click", function (event) {
+
+
+
+answerList.addEventListener("click", function(event){
     var chooseAnswer = event.target;
     console.log("hi");
     var answerState = chooseAnswer.getAttribute("data-answer");
@@ -186,8 +188,7 @@ function checkAnswer(nq) {
       correctAnswer.textContent = "Right Answer.";
       setTimeout(nq, 1000);
     }
-  });
-}
+    })
 
 
 init();
