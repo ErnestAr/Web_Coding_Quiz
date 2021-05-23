@@ -20,7 +20,7 @@
 
 }
 
-.answerlisthide {
+.hideitem {
     display: none;
 
 }
@@ -32,4 +32,5 @@
     list-style: lower-latin;
 
 }
+
 
