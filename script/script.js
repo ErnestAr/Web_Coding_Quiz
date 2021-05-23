@@ -38,6 +38,7 @@ var answersQ5 = [
   " Favorites",
 ];
 
+var t;
 //Active time and first question
 function init() {
   startButton.addEventListener("click", function () {
@@ -76,27 +77,14 @@ function startQ1() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[2];
   rightAnswer.dataset.answer = "right";
-
+     var next = setTimeout(startQ2, 100000);
   //check if answer is right or wrong
-  answerList.addEventListener("click", function (event) {
-    event.stopPropagation();
-    var chooseAnswer1 = event.target;
-    if (chooseAnswer1.matches("li")) {
-      var answerState1 = chooseAnswer1.getAttribute("data-answer");
-      if (answerState1 === "wrong") {
-        correctAnswer.textContent = "Wrong Answer.";
-        timeLeft  -= 10;
-        startQ2();
-      } else if (answerState1 === "right") {
-        correctAnswer.textContent = "Right Answer.";
-        startQ2();
-      }
-    }
-  });
+     checkAnswer(next)
+  
 }
 
 
-function startQ2() { setTimeout(function () {
+function startQ2() {
     //show list items with answers as context by changing class
     questionField.textContent = question2;
     correctAnswer.textContent = ""
@@ -111,24 +99,8 @@ function startQ2() { setTimeout(function () {
     rightAnswer.dataset.answer = "right";
   
     //check if answer is right or wrong
-    answerList.addEventListener("click", function (event) {
-      event.stopPropagation();
-      var chooseAnswer2 = event.target;
-      if (chooseAnswer2.matches("li")) {
-        var answerState2 = chooseAnswer2.getAttribute("data-answer");
-        if (answerState2 === "wrong") {
-          correctAnswer.textContent = "Wrong Answer.";
-          timeLeft  -= 10;
-          startQ3();
-        } else if (answerState2 === "right") {
-          correctAnswer.textContent = "Right Answer.";
-          startQ3();
-        }
-      }
-    });
-  
-}, 1000 )
 }
+ 
 //timer check function
 
 init()
@@ -148,23 +120,9 @@ function startQ3() { setTimeout(function () {
     rightAnswer.dataset.answer = "right";
   
     //check if answer is right or wrong
-    answerList.addEventListener("click", function (event) {
-        event.stopPropagation();
-      var chooseAnswer3 = event.target;
-      if (chooseAnswer3.matches("li")) {
-        var answerState3 = chooseAnswer3.getAttribute("data-answer");
-        if (answerState3 === "wrong") {
-          correctAnswer.textContent = "Wrong Answer.";
-          timeLeft  -= 10;
-          startQ4();
-        } else if (answerState3 === "right") {
-          correctAnswer.textContent = "Right Answer.";
-          startQ4();
-        }
-      }
-    });
+
   
-}, 1000 )
+}, 100000 )
 }
 
 function startQ4() { setTimeout(function () {
@@ -182,22 +140,9 @@ function startQ4() { setTimeout(function () {
     rightAnswer.dataset.answer = "right";
   
     //check if answer is right or wrong
-    answerList.addEventListener("click", function (event) {
-      var chooseAnswer4 = event.target;
-      if (chooseAnswer4.matches("li")) {
-        var answerState4 = chooseAnswer4.getAttribute("data-answer");
-        if (answerState4 === "wrong") {
-          correctAnswer.textContent = "Wrong Answer.";
-          timeLeft  -= 10;
-          startQ5();
-        } else if (answerState4=== "right") {
-          correctAnswer.textContent = "Right Answer.";
-          startQ5();
-        }
-      }
-    });
   
-}, 1000 )
+  
+}, 100000 )
 }
 
 function startQ5() { setTimeout(function () {
@@ -215,23 +160,9 @@ function startQ5() { setTimeout(function () {
     rightAnswer.dataset.answer = "right";
   
     //check if answer is right or wrong
-    answerList.addEventListener("click", function (event) {
-        event.stopPropagation();
-      var chooseAnswer5 = event.target;
-      if (chooseAnswer5.matches("li")) {
-        var answerState5 = chooseAnswer5.getAttribute("data-answer");
-        if (answerState5 === "wrong") {
-          correctAnswer.textContent = "Wrong Answer.";
-          timeLeft -= 10;
-          formMenu();
-        } else if (answerState5 === "right") {
-          correctAnswer.textContent = "Right Answer.";
-          formMenu();
-        }
-      }
-    });
+
   
-}, 1000 )
+}, 100000 )
 }
 
 function formMenu() { setTimeout(function () {
@@ -242,5 +173,25 @@ function formMenu() { setTimeout(function () {
     timerH3.className = "hideitem"
 
   
-}, 1000 )
+}, 10000 )
 }
+
+
+
+function checkAnswer (next) {
+answerList.addEventListener("click", function (event) {
+    var chooseAnswer1 = event.target;
+    if (chooseAnswer1.matches("li")) {
+      var answerState1 = chooseAnswer1.getAttribute("data-answer");
+      if (answerState1 === "wrong") {
+        correctAnswer.textContent = "Wrong Answer.";
+        timeLeft  -= 10;
+        
+      } else if (answerState1 === "right") {
+        correctAnswer.textContent = "Right Answer.";
+      }
+    }
+    clearTimeout(next)
+  });
+}
+
