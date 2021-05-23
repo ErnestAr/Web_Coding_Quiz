@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Coding Quiz</title>
+</head>
+<body>
+    <header>
+        <button id="lastscore">Last score</button>
+        <h3>Timer: <span id="time"></span></h3>
+    </header>
+    <main>
+        <div class="container">
+            <h2 id="question">Hey, welcome to JavaScript Quiz! Here is how it works: <br> When you click the button 1 min timer will start. <br>
+                If you get the answer right, good for you! Else, you get 10 sec off your timer. <br> There are 5 questions to check your knowledge. <br> Your score is going to be measured by the number of seconds left on your timer.
+                <br> Click "start quiz" button when you're ready.
+
+            </h2>
+            <ul class="answerlisthide" id="ullist">
+                <li id="1" data-answer="wrong"></li>
+                <li id="2" data-answer="wrong" ></li>
+                <li id="3" data-answer="wrong"></li>
+                <li id="4" data-answer="wrong"></li>
+            </ul>
+            <button id="startquiz">Start quiz</button>
+            <h3 id="showcorrect"></h3>
+        </div>
+
+    </main>
+    <footer>
+
+    </footer>
+
+    <script src="./script/script.js"></script>
+</body>
+</html>
+
