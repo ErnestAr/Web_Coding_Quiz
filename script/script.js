@@ -77,9 +77,10 @@ function startQ1() {
   //set data-answer of the correct answer
   var rightAnswer = answerListItem[2];
   rightAnswer.dataset.answer = "right";
-     var next = setTimeout(startQ2, 100000);
+   var nq = startQ2
+     checkAnswer(nq)
   //check if answer is right or wrong
-     checkAnswer(next)
+     
   
 }
 
@@ -97,15 +98,18 @@ function startQ2() {
     //set data-answer of the correct answer
     var rightAnswer = answerListItem[3];
     rightAnswer.dataset.answer = "right";
-  
+    var nq = startQ3
+    checkAnswer(nq)
     //check if answer is right or wrong
+    return
+
 }
- 
+
 //timer check function
 
-init()
 
-function startQ3() { setTimeout(function () {
+
+function startQ3() {
     //show list items with answers as context by changing class
     questionField.textContent = question3;
     correctAnswer.textContent = ""
@@ -118,11 +122,10 @@ function startQ3() { setTimeout(function () {
     //set data-answer of the correct answer
     var rightAnswer = answerListItem[0];
     rightAnswer.dataset.answer = "right";
-  
+    var nq = startQ4
+    checkAnswer(nq)
     //check if answer is right or wrong
-
-  
-}, 100000 )
+    return
 }
 
 function startQ4() { setTimeout(function () {
@@ -138,9 +141,10 @@ function startQ4() { setTimeout(function () {
     //set data-answer of the correct answer
     var rightAnswer = answerListItem[0];
     rightAnswer.dataset.answer = "right";
-  
+    var nq = startQ5
+    checkAnswer(nq)
     //check if answer is right or wrong
-  
+    return
   
 }, 100000 )
 }
@@ -158,7 +162,8 @@ function startQ5() { setTimeout(function () {
     //set data-answer of the correct answer
     var rightAnswer = answerListItem[0];
     rightAnswer.dataset.answer = "right";
-  
+    var nq = formMenu
+    checkAnswer(nq)
     //check if answer is right or wrong
 
   
@@ -178,7 +183,7 @@ function formMenu() { setTimeout(function () {
 
 
 
-function checkAnswer (next) {
+function checkAnswer (nq) {
 answerList.addEventListener("click", function (event) {
     var chooseAnswer1 = event.target;
     if (chooseAnswer1.matches("li")) {
@@ -186,12 +191,15 @@ answerList.addEventListener("click", function (event) {
       if (answerState1 === "wrong") {
         correctAnswer.textContent = "Wrong Answer.";
         timeLeft  -= 10;
-        
+        setTimeout(nq, 1000)
       } else if (answerState1 === "right") {
         correctAnswer.textContent = "Right Answer.";
+        setTimeout(nq, 1000)
       }
     }
-    clearTimeout(next)
+    
   });
+  return  true;
 }
 
+init()

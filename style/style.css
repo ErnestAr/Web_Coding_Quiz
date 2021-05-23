@@ -3,6 +3,20 @@
     border-radius: 3px ;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.headercld {
+    flex: 1;
+    margin: 0;
+}
+#timerh3 {
+    height: fit-content;
+    font-size: 40px;
+    flex: 75%;
+}
 
 .container {
     display: flex;
