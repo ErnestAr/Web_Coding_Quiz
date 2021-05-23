@@ -14,11 +14,11 @@
     </header>
     <main>
         <div class="container">
-            <h2 id="question">Hey, welcome to JavaScript Quiz! Here is how it works: <br> When you click the button 1 min timer will start. <br>
-                If you get the answer right, good for you! Else, you get 10 sec off your timer. <br> There are 5 questions to check your knowledge. <br> Your score is going to be measured by the number of seconds left on your timer.
-                <br> Click "start quiz" button when you're ready.
+            <p id="question">Hey, welcome to JavaScript Quiz! Here is how it works: <br> 1. When you click the button 1 min timer will start. <br>
+                2. If you get the answer right, good for you! Else, you get 10 sec off your timer. <br> 3. There are 5 questions to check your knowledge. <br>4.  Your score is going to be measured by the number of seconds left on your timer.
+                <br> 5.  Click "start quiz" button when you're ready.
 
-            </h2>
+            </p>
             <ul class="hideitem" id="ullist">
                 <li  id="1" data-answer="wrong"></li>
                 <li id="2" data-answer="wrong" ></li>
@@ -26,7 +26,16 @@
                 <li id="4" data-answer="wrong"></li>
             </ul>
             <button id="startquiz">Start quiz</button>
-            <h3 id="showcorrect"></h3>
+            
+            <textarea class = "hideitem" id="ints" name="initial"></textarea>
+            <button class = "hideitem" id="submit">Submit</button>
+            <div class=" hideitem" id="lastpage">
+                <button class = "hideitem" id="restart">Restart</button>
+                <button class = "hideitem" id="clearscore">Clear Score</button>
+                <button class = "hideitem" id="lscore">Last Score</button>
+            </div>
+            <p id="showcorrect"></p>
+
         </div>
 
     </main>

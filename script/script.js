@@ -1,12 +1,17 @@
 var answerList = document.querySelector("#ullist");
 var answerListItem = document.querySelectorAll("li");
 var questionField = document.querySelector("#question");
-var correctAnswer = document.querySelector("#showcorrect");
+var showRes = document.querySelector("#showcorrect");
 var timer = document.querySelector("#time");
 var scoreBoard = document.querySelector("#lastscore");
 var startButton = document.querySelector("#startquiz");
 var timerH3 = document.querySelector("#timerh3");
-var timeLeft = 120;
+var form = document.querySelector("#ints");
+var submitButton = document.querySelector("#submit");
+var lastPage = document.querySelector("#lastpage")
+var timeLeft = 2;
+var nq;
+
 
 //Question 1 answer: 3
 var question1 =
@@ -37,7 +42,12 @@ var answersQ5 = [
   "Concrete Terms",
   " Favorites",
 ];
-var nq;
+
+var finishedGame = false;
+
+
+
+
 //Active time and first question
 function init() {
   startButton.addEventListener("click", function () {
@@ -55,17 +65,17 @@ function startTimer() {
     timer.textContent = timeLeft;
 
     if (timeLeft <= 0) {
-      clearInterval(timerInterval);
+    //   clearInterval(timerInterval);
+      if (finishedGame === false) {
       timer.textContent = "0";
       timeLeft = 0;
-      formMenu();
+      formMenu();}
       //Add function here
     }
   }, 1000);
 }
 
 function startQ1() {
-  event.stopPropagation();
   //show list items with answers as context by changing class
   questionField.textContent = question1;
   answerList.className = "answerlistshow";
@@ -87,7 +97,7 @@ function startQ1() {
 function startQ2() {
   //show list items with answers as context by changing class
   questionField.textContent = question2;
-  correctAnswer.textContent = "";
+  showRes.textContent = "";
   for (let i = 0; i < answerListItem.length; i++) {
     answerListItem[i].dataset.answer = "wrong";
     var liItem = answerListItem[i];
@@ -108,7 +118,7 @@ function startQ2() {
 function startQ3() {
   //show list items with answers as context by changing class
   questionField.textContent = question3;
-  correctAnswer.textContent = "";
+  showRes.textContent = "";
   for (let i = 0; i < answerListItem.length; i++) {
     answerListItem[i].dataset.answer = "wrong";
     var liItem = answerListItem[i];
@@ -127,7 +137,7 @@ function startQ3() {
 function startQ4() {
   //show list items with answers as context by changing class
   questionField.textContent = question4;
-  correctAnswer.textContent = "";
+  showRes.textContent = "";
   for (let i = 0; i < answersQ4.length; i++) {
     answerListItem[i].dataset.answer = "wrong";
     var liItem = answerListItem[i];
@@ -146,7 +156,7 @@ function startQ4() {
 function startQ5() {
   //show list items with answers as context by changing class
   questionField.textContent = question5;
-  correctAnswer.textContent = "";
+  showRes.textContent = "";
   for (let i = 0; i < answersQ5.length; i++) {
     answerListItem[i].dataset.answer = "wrong";
     var liItem = answerListItem[i];
@@ -163,32 +173,102 @@ function startQ5() {
 
 function formMenu() {
   if (timeLeft <= 0) {
+    finishedGame = true;
+    
     questionField.textContent = "Your Score: 0";
   } else {
     questionField.textContent = "Your Score: " + timeLeft;
   }
+  showRes.textContent = ""
   answerList.className = "hideitem";
   timer.className = "hideitem";
   scoreBoard.className = "hideitem";
   timerH3.className = "hideitem";
+  form.className = "";
+  submitButton.className = "";
+
 }
 
 
 
-
+//change questions, adjust time
 answerList.addEventListener("click", function(event){
     var chooseAnswer = event.target;
-    console.log("hi");
     var answerState = chooseAnswer.getAttribute("data-answer");
     if (answerState === "wrong") {
-      correctAnswer.textContent = "Wrong Answer.";
+      showRes.textContent = "Wrong Answer.";
       timeLeft -= 10;
       setTimeout(nq, 1000);
     } else if (answerState === "right") {
-      correctAnswer.textContent = "Right Answer.";
+      showRes.textContent = "Right Answer.";
       setTimeout(nq, 1000);
     }
     })
 
 
 init();
+
+
+//Submit Score
+submitButton.addEventListener("click", function (){
+    if (timeLeft<= 0) {
+        timeLeft = 0}
+    
+    var saveInitials = {
+        initials : form.value.trim(),
+        score : timeLeft
+    } 
+    localStorage.setItem("saveInitials", JSON.stringify(saveInitials));
+    showRes.classList = ""
+    showRes.textContent = "Saved! " + saveInitials.initials + " : " + saveInitials.score;
+    setTimeout(lastPageInit, 2000)
+
+    
+}) 
+
+//Initiate last page
+function lastPageInit(){ 
+    showRes.textContent = ""
+    submitButton.className = "hideitem";
+    form.className = "hideitem"
+    var  eachButton = lastPage.children;
+    for (let i = 0; i < eachButton.length; i++) {
+        eachButton[i].className = ""
+        
+    }
+    questionField.textContent = "Thank you for taking the quiz. Don't forget, learning is an ongoing process, it never stops."
+
+}
+
+
+
+
+//Last page buttons
+lastPage.addEventListener("click", function(event) {
+
+
+    var chooseOption = event.target;
+    var buttonId = chooseOption.getAttribute("id")
+    //restart page button
+    if (buttonId === "restart"){
+        location.reload()
+        
+
+        
+    } //clear scores button
+      else if (buttonId === "clearscore") {
+        localStorage.clear()
+        showRes.textContent = "All data cleared!"
+
+        
+    }//Last score button
+      else if (buttonId === "lscore") {
+        var lastResult = JSON.parse(localStorage.getItem("saveInitials"));
+        if (lastResult !== null) {
+          showRes.textContent =  "Last results : " + lastResult.initials + 
+          " : " + lastResult.score
+        } else if (lastResult===null) [
+            showRes.textContent = "No saved resultes."
+        ]
+    }
+  })

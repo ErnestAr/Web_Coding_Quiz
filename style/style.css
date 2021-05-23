@@ -33,6 +33,7 @@ header {
 }
 #showcorrect {
     flex: 10%;
+    font-size: 35px;
 
 }
 
@@ -54,16 +55,13 @@ li {
     font-size: 25px;
 }
 
-#lastscore {
+#lastscore, #startquiz, #submit, #restart, #clearscore, #lscore{
     font-size: 35px;
     opacity: 0.65;
+    font:bolder
 }
 
-#startquiz {
-    font-size: 35px;
-    opacity: 0.65;
-    font-weight:400
-}
+
 
 #lastscore:hover {
     opacity: 1.0;
@@ -71,4 +69,14 @@ li {
 
 #startquiz:hover {
     opacity: 1.0;
+}
+
+#ints {
+    font-size: 25px;
+}
+
+#lastpage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
