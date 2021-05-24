@@ -1,82 +1,91 @@
-* {
-    border: 3px solid darkgreen;
-    border-radius: 3px ;
-    
-}
-
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.headercld {
-    flex: 1;
-    margin: 0;
-}
-#timerh3 {
-    height: fit-content;
-    font-size: 35px;
-    flex: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+button {
+  border: 3px solid darkgreen;
+  border-radius: 3px;
+  font-size: 35px;
+  opacity: 0.65;
+  font: bolder;
+  width: 250px;
+  cursor: pointer;
 }
-
-#question  { 
-    flex: 30%;
-    font-size: 35px;
-
-    
-}
-#showcorrect {
-    flex: 10%;
-    font-size: 35px;
-
-}
-
-.hideitem {
-    display: none;
-
-}
-
-.answerlistshow {
-    flex: 60%;
-    display: flex;
-    flex-direction: column;
-    list-style: lower-latin;
-
+button:hover {
+  opacity: 1;
 }
 
 li {
-    margin: 10px 0px;
-    font-size: 25px;
+  margin: 10px 0px;
+  font-size: 25px;
+  border: 3px solid darkgreen;
+  border-radius: 3px;
+  padding: 0px 5px;
+  width: 250px;
+  opacity: 0.65;
+  font-size: 25px;
+  cursor: pointer;
+}
+li:hover {
+  opacity: 1;
 }
 
-#lastscore, #startquiz, #submit, #restart, #clearscore, #lscore{
-    font-size: 35px;
-    opacity: 0.65;
-    font:bolder
+.headercld {
+  flex: 1;
+  margin: 0;
+}
+#timerh3 {
+  height: fit-content;
+  font-size: 35px;
+  flex: 60%;
+  padding-top: 5px;
+  margin-left: 15px;
 }
 
-
-
-#lastscore:hover {
-    opacity: 1.0;
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
-#startquiz:hover {
-    opacity: 1.0;
+.hideitem {
+  display: none;
 }
 
+.answerlistshow {
+  flex: 60%;
+  display: flex;
+  flex-direction: column;
+  list-style: lower-latin;
+}
+
+#submit {
+  margin-top: 10px;
+}
+
+#question {
+  flex: 30%;
+  font-size: 35px;
+}
+#showcorrect {
+  flex: 10%;
+  font-size: 35px;
+}
+
+#question {
+  padding: 10px;
+}
 #ints {
-    font-size: 25px;
+  font-size: 25px;
+  border: 3px solid darkgreen;
+  border-radius: 3px;
+  opacity: 0.65;
 }
 
 #lastpage {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

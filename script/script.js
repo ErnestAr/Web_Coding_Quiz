@@ -8,10 +8,10 @@ var startButton = document.querySelector("#startquiz");
 var timerH3 = document.querySelector("#timerh3");
 var form = document.querySelector("#ints");
 var submitButton = document.querySelector("#submit");
-var lastPage = document.querySelector("#lastpage")
+var lastPage = document.querySelector("#lastpage");
 var timeLeft = 2;
 var nq;
-
+var finishedGame = false;
 
 //Question 1 answer: 3
 var question1 =
@@ -43,15 +43,11 @@ var answersQ5 = [
   " Favorites",
 ];
 
-var finishedGame = false;
-
-
-
-
 //Active time and first question
 function init() {
   startButton.addEventListener("click", function () {
     questionField.textContent = "";
+    showRes.textContent = "";
     startButton.setAttribute("style", "display: none;");
     startTimer();
     startQ1();
@@ -63,20 +59,18 @@ function startTimer() {
   var timerInterval = setInterval(function () {
     timeLeft--;
     timer.textContent = timeLeft;
-
     if (timeLeft <= 0) {
-    //   clearInterval(timerInterval);
       if (finishedGame === false) {
-      timer.textContent = "0";
-      timeLeft = 0;
-      formMenu();}
-      //Add function here
+        timer.textContent = "0";
+        timeLeft = 0;
+        clearInterval(timerInterval);
+        formMenu();
+      }
     }
   }, 1000);
 }
 
 function startQ1() {
-  //show list items with answers as context by changing class
   questionField.textContent = question1;
   answerList.className = "answerlistshow";
   for (let i = 0; i < answersQ1.length; i++) {
@@ -85,190 +79,165 @@ function startQ1() {
     var choice = answersQ1[i];
     liItem.textContent = choice;
   }
-  //set data-answer of the correct answer
   var rightAnswer = answerListItem[2];
   rightAnswer.dataset.answer = "right";
-   nq = startQ2;
-  
-  //check if answer is right or wrong
-  return;
+  nq = startQ2;
 }
 
 function startQ2() {
-  //show list items with answers as context by changing class
-  questionField.textContent = question2;
-  showRes.textContent = "";
-  for (let i = 0; i < answerListItem.length; i++) {
-    answerListItem[i].dataset.answer = "wrong";
-    var liItem = answerListItem[i];
-    var choice = answersQ2[i];
-    liItem.textContent = choice;
+  if (finishedGame === false) {
+    questionField.textContent = question2;
+    showRes.textContent = "";
+    for (let i = 0; i < answerListItem.length; i++) {
+      answerListItem[i].dataset.answer = "wrong";
+      var liItem = answerListItem[i];
+      var choice = answersQ2[i];
+      liItem.textContent = choice;
+    }
+    var rightAnswer = answerListItem[3];
+    rightAnswer.dataset.answer = "right";
+    nq = startQ3;
   }
-  //set data-answer of the correct answer
-  var rightAnswer = answerListItem[3];
-  rightAnswer.dataset.answer = "right";
-   nq = startQ3;
-  
-  //check if answer is right or wrong
-  return;
 }
 
-//timer check function
-
 function startQ3() {
-  //show list items with answers as context by changing class
-  questionField.textContent = question3;
-  showRes.textContent = "";
-  for (let i = 0; i < answerListItem.length; i++) {
-    answerListItem[i].dataset.answer = "wrong";
-    var liItem = answerListItem[i];
-    var choice = answersQ3[i];
-    liItem.textContent = choice;
+  if (finishedGame === false) {
+    questionField.textContent = question3;
+    showRes.textContent = "";
+    for (let i = 0; i < answerListItem.length; i++) {
+      answerListItem[i].dataset.answer = "wrong";
+      var liItem = answerListItem[i];
+      var choice = answersQ3[i];
+      liItem.textContent = choice;
+    }
+    var rightAnswer = answerListItem[0];
+    rightAnswer.dataset.answer = "right";
+    nq = startQ4;
   }
-  //set data-answer of the correct answer
-  var rightAnswer = answerListItem[0];
-  rightAnswer.dataset.answer = "right";
-   nq = startQ4;
-  
-  //check if answer is right or wrong
-  return;
 }
 
 function startQ4() {
-  //show list items with answers as context by changing class
-  questionField.textContent = question4;
-  showRes.textContent = "";
-  for (let i = 0; i < answersQ4.length; i++) {
-    answerListItem[i].dataset.answer = "wrong";
-    var liItem = answerListItem[i];
-    var choice = answersQ4[i];
-    liItem.textContent = choice;
+  if (finishedGame === false) {
+    questionField.textContent = question4;
+    showRes.textContent = "";
+    for (let i = 0; i < answersQ4.length; i++) {
+      answerListItem[i].dataset.answer = "wrong";
+      var liItem = answerListItem[i];
+      var choice = answersQ4[i];
+      liItem.textContent = choice;
+    }
+    var rightAnswer = answerListItem[0];
+    rightAnswer.dataset.answer = "right";
+    nq = startQ5;
   }
-  //set data-answer of the correct answer
-  var rightAnswer = answerListItem[0];
-  rightAnswer.dataset.answer = "right";
-   nq = startQ5;
-  
-  //check if answer is right or wrong
-  return;
 }
 
 function startQ5() {
-  //show list items with answers as context by changing class
-  questionField.textContent = question5;
-  showRes.textContent = "";
-  for (let i = 0; i < answersQ5.length; i++) {
-    answerListItem[i].dataset.answer = "wrong";
-    var liItem = answerListItem[i];
-    var choice = answersQ5[i];
-    liItem.textContent = choice;
+  if (finishedGame === false) {
+    questionField.textContent = question5;
+    showRes.textContent = "";
+    for (let i = 0; i < answersQ5.length; i++) {
+      answerListItem[i].dataset.answer = "wrong";
+      var liItem = answerListItem[i];
+      var choice = answersQ5[i];
+      liItem.textContent = choice;
+    }
+    var rightAnswer = answerListItem[0];
+    rightAnswer.dataset.answer = "right";
+    nq = formMenu;
   }
-  //set data-answer of the correct answer
-  var rightAnswer = answerListItem[0];
-  rightAnswer.dataset.answer = "right";
-  nq = formMenu;
-
-  //check if answer is right or wrong
 }
 
 function formMenu() {
-  if (timeLeft <= 0) {
-    finishedGame = true;
-    
-    questionField.textContent = "Your Score: 0";
-  } else {
-    questionField.textContent = "Your Score: " + timeLeft;
-  }
-  showRes.textContent = ""
+  clearInterval(startTimer);
+  questionField.textContent =
+    "Your score is " + timeLeft + ", enter your Initials below.";
+  showRes.textContent = "";
   answerList.className = "hideitem";
   timer.className = "hideitem";
   scoreBoard.className = "hideitem";
   timerH3.className = "hideitem";
   form.className = "";
   submitButton.className = "";
-
+  finishedGame = true;
 }
-
-
 
 //change questions, adjust time
-answerList.addEventListener("click", function(event){
-    var chooseAnswer = event.target;
-    var answerState = chooseAnswer.getAttribute("data-answer");
-    if (answerState === "wrong") {
-      showRes.textContent = "Wrong Answer.";
-      timeLeft -= 10;
-      setTimeout(nq, 1000);
-    } else if (answerState === "right") {
-      showRes.textContent = "Right Answer.";
-      setTimeout(nq, 1000);
-    }
-    })
+answerList.addEventListener("click", function (event) {
+  var chooseAnswer = event.target;
+  var answerState = chooseAnswer.getAttribute("data-answer");
+  if (answerState === "wrong") {
+    showRes.textContent = "Wrong Answer.";
+    showRes.setAttribute("style", "color: red");
 
-
-init();
-
+    timeLeft -= 10;
+    setTimeout(nq, 1000);
+  } else if (answerState === "right") {
+    showRes.textContent = "Right Answer.";
+    setTimeout(nq, 1000);
+    showRes.setAttribute("style", "color: green");
+  }
+});
 
 //Submit Score
-submitButton.addEventListener("click", function (){
-    if (timeLeft<= 0) {
-        timeLeft = 0}
-    
-    var saveInitials = {
-        initials : form.value.trim(),
-        score : timeLeft
-    } 
-    localStorage.setItem("saveInitials", JSON.stringify(saveInitials));
-    showRes.classList = ""
-    showRes.textContent = "Saved! " + saveInitials.initials + " : " + saveInitials.score;
-    setTimeout(lastPageInit, 2000)
-
-    
-}) 
+submitButton.addEventListener("click", function () {
+  var saveInitials = {
+    initials: form.value.trim(),
+    score: timeLeft,
+  };
+  localStorage.setItem("saveInitials", JSON.stringify(saveInitials));
+  showRes.classList = "";
+  showRes.setAttribute("style", "color: black");
+  showRes.textContent =
+    "Saved! " + saveInitials.initials + " : " + saveInitials.score;
+  setTimeout(lastPageInit, 2000);
+});
 
 //Initiate last page
-function lastPageInit(){ 
-    showRes.textContent = ""
-    submitButton.className = "hideitem";
-    form.className = "hideitem"
-    var  eachButton = lastPage.children;
-    for (let i = 0; i < eachButton.length; i++) {
-        eachButton[i].className = ""
-        
-    }
-    questionField.textContent = "Thank you for taking the quiz. Don't forget, learning is an ongoing process, it never stops."
-
+function lastPageInit() {
+  questionField.setAttribute("style", "text-align: center");
+  showRes.textContent = "";
+  submitButton.className = "hideitem";
+  form.className = "hideitem";
+  var eachButton = lastPage.children;
+  for (let i = 0; i < eachButton.length; i++) {
+    eachButton[i].className = "";
+  }
+  questionField.textContent =
+    "Thank you for taking the quiz. Don't forget, learning is an ongoing process, it never stops.";
 }
 
-
-
-
 //Last page buttons
-lastPage.addEventListener("click", function(event) {
-
-
-    var chooseOption = event.target;
-    var buttonId = chooseOption.getAttribute("id")
-    //restart page button
-    if (buttonId === "restart"){
-        location.reload()
-        
-
-        
-    } //clear scores button
-      else if (buttonId === "clearscore") {
-        localStorage.clear()
-        showRes.textContent = "All data cleared!"
-
-        
-    }//Last score button
-      else if (buttonId === "lscore") {
-        var lastResult = JSON.parse(localStorage.getItem("saveInitials"));
-        if (lastResult !== null) {
-          showRes.textContent =  "Last results : " + lastResult.initials + 
-          " : " + lastResult.score
-        } else if (lastResult===null) [
-            showRes.textContent = "No saved resultes."
-        ]
+lastPage.addEventListener("click", function (event) {
+  var chooseOption = event.target;
+  var buttonId = chooseOption.getAttribute("id");
+  //restart page button
+  if (buttonId === "restart") {
+    location.reload();
+  } //clear scores button
+  else if (buttonId === "clearscore") {
+    localStorage.clear();
+    showRes.textContent = "All data cleared!";
+  } //Last score button
+  else if (buttonId === "lscore") {
+    var lastResult = JSON.parse(localStorage.getItem("saveInitials"));
+    if (lastResult !== null) {
+      showRes.textContent =
+        "Last results " + lastResult.initials + " : " + lastResult.score;
+    } else if (lastResult === null) {
+      showRes.textContent = "No saved resultes.";
     }
-  })
+  }
+});
+
+//Show last results on home page
+scoreBoard.addEventListener("click", function () {
+  var lastResult = JSON.parse(localStorage.getItem("saveInitials"));
+  if (lastResult !== null) {
+    showRes.textContent =
+      "Last results " + lastResult.initials + " : " + lastResult.score;
+  } else if (lastResult === null) {
+    showRes.textContent = "No saved resultes.";
+  }
+});
+init();
