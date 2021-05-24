@@ -9,7 +9,7 @@ var timerH3 = document.querySelector("#timerh3");
 var form = document.querySelector("#ints");
 var submitButton = document.querySelector("#submit");
 var lastPage = document.querySelector("#lastpage");
-var timeLeft = 2;
+var timeLeft = 120;
 var nq;
 var finishedGame = false;
 
@@ -204,7 +204,7 @@ function lastPageInit() {
     eachButton[i].className = "";
   }
   questionField.textContent =
-    "Thank you for taking the quiz. Don't forget, learning is an ongoing process, it never stops.";
+    "Thank you for taking the quiz. Don't forget, learning is an ongoing process, it never stops. ";
 }
 
 //Last page buttons
