@@ -15,7 +15,7 @@
 1. Javascript
 2. CSS
 3. HTML
-## Collabarations:
+## Collaborations:
 Solo project
 ## License:
 Copyright <2021> <Ernest Arutiunian>
